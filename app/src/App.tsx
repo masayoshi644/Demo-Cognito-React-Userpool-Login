@@ -25,7 +25,7 @@ function App() {
         </Box>
     );
 
-    const PrivateDashboard = () => (
+    const SuccessPage = () => (
         <PrivateRoute>
             <Box>Welcome🎉 {auth.username}👍</Box>
             <Button onClick={() => auth.signOut()}>Log out</Button>
@@ -37,7 +37,7 @@ function App() {
             <Routes>
                 <Route index element={<TopPage />} />
                 <Route path="signin" element={<SignIn />} />
-                <Route path="dashboard" element={<PrivateDashboard />}></Route>
+                <Route path="dashboard" element={<SuccessPage />}></Route>
                 <Route path="*" element={<p>Page Not Found</p>} />
             </Routes>
         </BrowserRouter>
