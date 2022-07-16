@@ -1,42 +1,34 @@
-// import { Text } from "@chakra-ui/react";
-
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-// import "./App.css";
 import PrivateRoute from "./components/PrivateRoute";
 import { useAuth } from "./hooks/useAuth";
 import { SignIn } from "./pages/SignIn";
 
-// function App() {
-//     return (
-//         <>
-//             <Text fontSize="3xl">Hello ChakraUI</Text>
-//         </>
-//     );
-// }
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
-// export default App;
 function App() {
     const auth = useAuth();
-    <p>aaaaaaaaaaa</p>;
 
     if (auth.isLoading) {
-        return <div></div>;
+        return <Box />;
     }
 
     const TopPage = () => (
-        <div>
-            <p>トップページ</p>
-            <p>{auth.isAuthenticated ? "ログイン済" : "未ログイン"}</p>
-            <p>
-                <Link to="/signin">ログイン</Link>
-            </p>
-        </div>
+        <Box>
+            <Heading>Cognito Test</Heading>
+            <Text>
+                {auth.isAuthenticated ? "STATUS: LOGIN" : "STATUS: NOT LOGIN"}
+            </Text>
+            <Link to="/signin">
+                Go to LoginPage(Click Here) <ExternalLinkIcon mx="2px" />
+            </Link>
+        </Box>
     );
 
     const PrivateDashboard = () => (
         <PrivateRoute>
-            <div>ようこそ！ {auth.username} さん！</div>
-            <button onClick={() => auth.signOut()}>ログアウト</button>
+            <Box>Welcome🎉 {auth.username}👍</Box>
+            <Button onClick={() => auth.signOut()}>Log out</Button>
         </PrivateRoute>
     );
 

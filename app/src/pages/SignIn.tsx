@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
+import { Button, Input } from "@chakra-ui/react";
+
 export function SignIn() {
     const auth = useAuth();
     const navigate = useNavigate();
@@ -21,24 +23,24 @@ export function SignIn() {
     return (
         <form noValidate onSubmit={executeSignIn}>
             <div>
-                <label htmlFor="username">メールアドレス: </label>
-                <input
-                    id="username"
-                    type="email"
+                <label htmlFor="username">UserID: </label>
+                <Input
+                    type="text"
+                    placeholder="UserID"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
             <div>
                 <label htmlFor="password">パスワード: </label>
-                <input
-                    id="password"
+                <Input
                     type="password"
+                    placeholder="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <button type="submit">ログイン</button>
+            <Button type="submit">ログイン</Button>
         </form>
     );
 }

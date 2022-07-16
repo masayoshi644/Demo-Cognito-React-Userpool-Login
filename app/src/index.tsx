@@ -1,8 +1,9 @@
+import App from "./App";
+import { ProvideAuth } from "./hooks/useAuth";
+
 import * as React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { ChakraProvider } from "@chakra-ui/react";
-import { ProvideAuth } from "./hooks/useAuth";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement

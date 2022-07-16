@@ -1,6 +1,5 @@
 import Amplify, { Auth } from "aws-amplify";
 import React, { createContext, useContext, useEffect, useState } from "react";
-// import  AWSConfigAuth from "../config/auth";
 import { AwsConfigAuth } from "../config/auth";
 
 Amplify.configure({ Auth: AwsConfigAuth });
@@ -64,7 +63,7 @@ const useProvideAuth = (): UseAuth => {
         } catch (error) {
             return {
                 success: false,
-                message: "認証に失敗しました。",
+                message: "LOGIN FAIL",
             };
         }
     };
@@ -78,7 +77,7 @@ const useProvideAuth = (): UseAuth => {
         } catch (error) {
             return {
                 success: false,
-                message: "認証に失敗しました。",
+                message: "LOGIN FAIL",
             };
         }
     };
@@ -92,7 +91,7 @@ const useProvideAuth = (): UseAuth => {
         } catch (error) {
             return {
                 success: false,
-                message: "認証に失敗しました。",
+                message: "LOGIN FAIL",
             };
         }
     };
@@ -106,7 +105,7 @@ const useProvideAuth = (): UseAuth => {
         } catch (error) {
             return {
                 success: false,
-                message: "ログアウトに失敗しました。",
+                message: "LOGOUT FAIL",
             };
         }
     };
