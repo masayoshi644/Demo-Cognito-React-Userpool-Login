@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-import { Button, Input } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Flex,
+    FormLabel,
+    Input,
+    Spacer,
+    Stack,
+} from "@chakra-ui/react";
 
 export function SignIn() {
     const auth = useAuth();
@@ -14,33 +22,48 @@ export function SignIn() {
         event.preventDefault();
         const result = await auth.signIn(username, password);
         if (result.success) {
-            navigate({ pathname: "/dashboard" });
+            navigate({ pathname: "/success" });
         } else {
             alert(result.message);
         }
     };
 
     return (
-        <form noValidate onSubmit={executeSignIn}>
-            <div>
-                <label htmlFor="username">UserID: </label>
-                <Input
-                    type="text"
-                    placeholder="UserID"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="password">パスワード: </label>
-                <Input
-                    type="password"
-                    placeholder="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <Button type="submit">ログイン</Button>
-        </form>
+        <Flex justify={"center"}>
+            <Box
+                h={"500"}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <form noValidate onSubmit={executeSignIn}>
+                    <Box>
+                        <FormLabel htmlFor="username">User Name</FormLabel>
+                        <Input
+                            type="text"
+                            placeholder="UserID"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </Box>
+                    <Spacer height="10px" />
+                    <Box>
+                        <FormLabel htmlFor="password">Password</FormLabel>
+                        <Input
+                            type="password"
+                            placeholder="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Box>
+                    <Spacer height="15px" />
+                    <Stack align="center">
+                        <Button type="submit" colorScheme="teal">
+                            ログイン
+                        </Button>
+                    </Stack>
+                </form>
+            </Box>
+        </Flex>
     );
 }

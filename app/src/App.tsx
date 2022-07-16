@@ -3,7 +3,7 @@ import { useAuth } from "./hooks/useAuth";
 import { SignIn } from "./pages/SignIn";
 
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 function App() {
@@ -14,21 +14,37 @@ function App() {
     }
 
     const TopPage = () => (
-        <Box>
-            <Heading>Cognito Test</Heading>
-            <Text>
-                {auth.isAuthenticated ? "STATUS: LOGIN" : "STATUS: NOT LOGIN"}
-            </Text>
-            <Link to="/signin">
-                Go to LoginPage(Click Here) <ExternalLinkIcon mx="2px" />
-            </Link>
-        </Box>
+        <Flex justify={"center"}>
+            <VStack h={500} justify="center" spacing={8}>
+                <Text fontSize="5xl">Cognito Test</Text>
+                <Text fontSize={"3xl"}>
+                    {auth.isAuthenticated
+                        ? "STATUS: LOGIN"
+                        : "STATUS: NOT LOGIN"}
+                </Text>
+                <Link to="/signin">
+                    <Text fontSize={"2xl"}>
+                        Go to LoginPage(Click Here){" "}
+                        <ExternalLinkIcon mx="4px" />
+                    </Text>
+                </Link>
+            </VStack>
+        </Flex>
     );
 
     const SuccessPage = () => (
         <PrivateRoute>
-            <Box>Welcome🎉 {auth.username}👍</Box>
-            <Button onClick={() => auth.signOut()}>Log out</Button>
+            <VStack h={500} justify="center" spacing={3}>
+                <Text fontSize="5xl">Welcome {auth.username}!!</Text>
+                <Text fontSize="4xl">Login Succeed🎉</Text>
+                <Button
+                    colorScheme="teal"
+                    size="lg"
+                    onClick={() => auth.signOut()}
+                >
+                    Log out
+                </Button>
+            </VStack>
         </PrivateRoute>
     );
 
@@ -37,7 +53,7 @@ function App() {
             <Routes>
                 <Route index element={<TopPage />} />
                 <Route path="signin" element={<SignIn />} />
-                <Route path="dashboard" element={<SuccessPage />}></Route>
+                <Route path="success" element={<SuccessPage />}></Route>
                 <Route path="*" element={<p>Page Not Found</p>} />
             </Routes>
         </BrowserRouter>
