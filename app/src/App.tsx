@@ -1,10 +1,10 @@
-import PrivateRoute from "./components/PrivateRoute";
 import { useAuth } from "./hooks/useAuth";
 import { SignIn } from "./pages/SignIn";
 
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { SuccessPage } from "./pages/Success";
 
 function App() {
     const auth = useAuth();
@@ -30,22 +30,6 @@ function App() {
                 </Link>
             </VStack>
         </Flex>
-    );
-
-    const SuccessPage = () => (
-        <PrivateRoute>
-            <VStack h={500} justify="center" spacing={3}>
-                <Text fontSize="5xl">Welcome {auth.username}!!</Text>
-                <Text fontSize="4xl">Login Succeed🎉</Text>
-                <Button
-                    colorScheme="teal"
-                    size="lg"
-                    onClick={() => auth.signOut()}
-                >
-                    Log out
-                </Button>
-            </VStack>
-        </PrivateRoute>
     );
 
     return (

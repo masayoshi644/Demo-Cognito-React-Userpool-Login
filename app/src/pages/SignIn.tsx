@@ -10,6 +10,7 @@ import {
     Input,
     Spacer,
     Stack,
+    VStack,
 } from "@chakra-ui/react";
 
 export function SignIn() {
@@ -30,40 +31,36 @@ export function SignIn() {
 
     return (
         <Flex justify={"center"}>
-            <Box
-                h={"500"}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-            >
+            <VStack h={500} justify="center">
                 <form noValidate onSubmit={executeSignIn}>
                     <Box>
                         <FormLabel htmlFor="username">User Name</FormLabel>
+                        <Spacer height="10px" />
                         <Input
                             type="text"
                             placeholder="UserID"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            size="lg"
                         />
                     </Box>
-                    <Spacer height="10px" />
-                    <Box>
-                        <FormLabel htmlFor="password">Password</FormLabel>
-                        <Input
-                            type="password"
-                            placeholder="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </Box>
-                    <Spacer height="15px" />
+                    <Spacer height="20px" />
+                    <FormLabel htmlFor="password">Password</FormLabel>
+                    <Input
+                        type="password"
+                        placeholder="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        size="lg"
+                    />
+                    <Spacer height="35px" />
                     <Stack align="center">
-                        <Button type="submit" colorScheme="teal">
-                            ログイン
+                        <Button type="submit" colorScheme="teal" size="lg">
+                            Login
                         </Button>
                     </Stack>
                 </form>
-            </Box>
+            </VStack>
         </Flex>
     );
 }
