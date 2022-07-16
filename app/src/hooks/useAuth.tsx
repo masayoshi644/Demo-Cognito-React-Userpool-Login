@@ -8,8 +8,6 @@ interface UseAuth {
     isLoading: boolean;
     isAuthenticated: boolean;
     username: string;
-    signUp: (username: string, password: string) => Promise<Result>;
-    confirmSignUp: (verificationCode: string) => Promise<Result>;
     signIn: (username: string, password: string) => Promise<Result>;
     signOut: () => void;
 }
@@ -38,7 +36,6 @@ const useProvideAuth = (): UseAuth => {
     const [isLoading, setIsLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
 
     useEffect(() => {
         Auth.currentAuthenticatedUser()
@@ -53,34 +50,6 @@ const useProvideAuth = (): UseAuth => {
                 setIsLoading(false);
             });
     }, []);
-
-    const signUp = async (username: string, password: string) => {
-        try {
-            await Auth.signUp({ username, password });
-            setUsername(username);
-            setPassword(password);
-            return { success: true, message: "" };
-        } catch (error) {
-            return {
-                success: false,
-                message: "LOGIN FAIL",
-            };
-        }
-    };
-
-    const confirmSignUp = async (verificationCode: string) => {
-        try {
-            await Auth.confirmSignUp(username, verificationCode);
-            const result = await signIn(username, password);
-            setPassword("");
-            return result;
-        } catch (error) {
-            return {
-                success: false,
-                message: "LOGIN FAIL",
-            };
-        }
-    };
 
     const signIn = async (username: string, password: string) => {
         try {
@@ -114,8 +83,6 @@ const useProvideAuth = (): UseAuth => {
         isLoading,
         isAuthenticated,
         username,
-        signUp,
-        confirmSignUp,
         signIn,
         signOut,
     };
