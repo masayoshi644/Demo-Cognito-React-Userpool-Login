@@ -32,9 +32,7 @@ $ terraform apply
 
 **Congrats! You can create Amazon Cognito!**
 
-Then, You create a sample user using AWS CLI commands!
-
-※Please type YOUR Cognito identification.
+Then, You create a sample user using AWS CLI commands! ※Please type YOUR Cognito identification.
 
 #### create a user
 
@@ -68,7 +66,6 @@ REACT_APP_AUTH_REGION={Please type aws region you want to use}
 REACT_APP_AUTH_USER_POOL_ID={Please type your user id}
 REACT_APP_AUTH_USER_POOL_WEB_CLIENT_ID={Please type your client id}
 REACT_APP_AUTH_COOKIE_STORAGE_DOMAIN=localhost
-
 ```
 
 Finally, you run the app!
@@ -81,7 +78,3 @@ $ npm start
 <img width="1267" alt="screenshot" src="https://user-images.githubusercontent.com/42430018/179391595-cc787f86-9df7-49d6-9b0e-97acfdbde78a.png">
 
 Please go to the login page and touch the login demo!
-
-```
-
-```
