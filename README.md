@@ -1,6 +1,7 @@
 # OVERVIEW
 
-[Demo App in this blog!]()
+[Demo App in this blog!](https://dev.to/paprikamah/how-to-use-amazon-cognito-with-reacttypescript-4elj)
+If you wanna know details, please go to the link!
 
 ## Quick Setup
 
@@ -30,8 +31,6 @@ $ terraform plan
 $ terraform apply
 ```
 
-**Congrats! You can create Amazon Cognito!**
-
 Then, You create a sample user using AWS CLI commands! ※Please type YOUR Cognito identification.
 
 #### create a user
@@ -46,7 +45,7 @@ $ aws cognito-idp admin-create-user  --user-pool-id "{Please type your userpool 
 $ aws cognito-idp admin-set-user-password --user-pool-id "{Please type your userpool id}" --username "test-user-paprika" --password 'Password1234#' --permanent
 ```
 
-Then, completes the setup! Let's implement an application to use it.
+Completes the setup! Let's implement an application to use it.
 
 ## 2. App
 
