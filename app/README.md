@@ -73,5 +73,6 @@ REACT_APP_AUTH_COOKIE_STORAGE_DOMAIN=localhost
 `npm start`
 
 Congrats! You can see the top page.
+<img width="1267" alt="screenshot" src="https://user-images.githubusercontent.com/42430018/179391595-cc787f86-9df7-49d6-9b0e-97acfdbde78a.png">
 
 Please go to the login page and touch the login demo!
