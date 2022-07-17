@@ -1,46 +1,77 @@
-# Getting Started with Create React App
+# OVERVIEW
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Demo App in this blog]()
 
-## Available Scripts
+## Quick Setup
 
-In the project directory, you can run:
+### Prerequisite
 
-### `npm start`
+-   Amazon Cognito is created with AWS CLI and Terraform.
+-   Demo App is developed in React/TypeScript, and Chakra UI
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Details will be as follows, please set up if necessary.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| name                                                                                     | version |
+| :--------------------------------------------------------------------------------------- | :------ |
+| [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) | 2.6.0   |
+| [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli)             | 1.1.0   |
+| [react](https://github.com/facebook/react)                                               | 18.2.0  |
+| [typescript](https://github.com/microsoft/TypeScript)                                    | 4.6.2   |
+| [react-router-dom](https://github.com/remix-run/react-router)                            | 6.3.0   |
+| [chakra-ui/react](https://github.com/chakra-ui/chakra-ui)                                | 2.2.4   |
+| [aws-amplify](https://github.com/aws-amplify/amplify-js)                                 | 4.3.27  |
 
-### `npm test`
+## 1. Infra
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`cd infra`
 
-### `npm run build`
+`terraform init`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`terraform plan`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`terraform apply`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Congrats! You can create Amazon Cognito!
 
-### `npm run eject`
+Then, You create a sample user using AWS CLI commands!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+※Please type YOUR Cognito identification.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### create a user
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+aws cognito-idp admin-create-user  --user-pool-id "{Please type your userpool id}"  --username "test-user-paprika"
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Setting a password
 
-## Learn More
+```
+aws cognito-idp admin-set-user-password --user-pool-id "{Please type your userpool id}" --username "test-user-paprika" --password 'Password1234#' --permanent
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Then, completes the setup! Let's implement an application to use it.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 2. App
+
+`cd app`
+
+`npm i`
+
+`npm start`
+
+`vi .env`
+
+Please set YOUR Cognito identification which is made from `1. Infra`
+
+```
+REACT_APP_AUTH_REGION={Please type aws region you want to use}
+REACT_APP_AUTH_USER_POOL_ID={Please type your user id}
+REACT_APP_AUTH_USER_POOL_WEB_CLIENT_ID={Please type your client id}
+REACT_APP_AUTH_COOKIE_STORAGE_DOMAIN=localhost
+```
+
+`npm start`
+
+Congrats! You can see the top page.
+
+Please go to the login page and touch the login demo!
